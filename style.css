@@ -173,16 +173,19 @@
         max-height: 500px;
       }
 
-      .dropdown-content {
-        position: static;
-        opacity: 1 !important;
-        visibility: visible !important;
-        transform: none !important;
-        box-shadow: none;
-        background-color: transparent;
-        padding-left: 15px;
-        border-radius: 0;
-      }
+.dropdown-content {
+  position: static;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+  padding-left: 15px;
+}
+
+/* When open, expand dropdown */
+.dropdown.open > .dropdown-content {
+  max-height: 500px;
+}
+
 
       .dropdown-content a {
         padding: 10px 0;
@@ -194,3 +197,60 @@
         color: #1D4ED8;
       }
     }
+
+/* Style top-level nav */
+.nav-links {
+  list-style: none;
+}
+
+/* Top-level nav items */
+.nav-links > li {
+  position: relative;
+}
+
+/* Dropdown content as nested <ul> */
+.dropdown-content {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Target dropdown <ul> inside a dropdown <li> */
+.nav-links .dropdown > ul {
+  opacity: 0;
+  visibility: hidden;
+  position: absolute;
+  background-color: #fff;
+  min-width: 180px;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.12);
+  border-radius: 6px;
+  top: 110%;
+  left: 0;
+  transform: translateY(12px);
+  transition: all 0.3s ease;
+  z-index: 1000;
+}
+
+/* Show dropdown on hover */
+.nav-links .dropdown:hover > ul,
+.nav-links .dropdown:focus-within > ul {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+/* Style inner dropdown links */
+.nav-links .dropdown li a {
+  display: block;
+  padding: 12px 20px;
+  color: #1F2937;
+  text-decoration: none;
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+/* Hover/focus for nested links */
+.nav-links .dropdown li a:hover,
+.nav-links .dropdown li a:focus {
+  background-color: #3B82F6;
+  color: white;
+}

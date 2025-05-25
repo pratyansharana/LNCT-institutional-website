@@ -4,60 +4,75 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>LNCT Navigation</title>
-  <link rel="stylesheet" href="style.css">
-
+  <link rel="stylesheet" href="./style.css">
 </head>
 <body>
   <header class="header">
     <div class="container header-content">
       <img src="assets/logo.png" alt="LNCT Logo" class="logo" />
 
-      <!-- Hamburger for mobile -->
       <button id="menu-toggle" aria-label="Toggle menu" class="menu-toggle">&#9776;</button>
 
-      <nav class="nav-links" id="nav-links">
-        <a href="index.html" class="active">Home</a>
+      <nav>
+        <ul class="nav-links" id="nav-links">
+          <li><a href="index.html" class="active">Home</a></li>
 
-        <div class="dropdown">
-          <button class="dropbtn" aria-haspopup="true" aria-expanded="false">About ▾</button>
-          <div class="dropdown-content" role="menu" aria-label="About submenu">
-            <a href="about.html" role="menuitem">About LNCT</a>
-            <a href="vision.html" role="menuitem">Vision & Mission</a>
-            <a href="leadership.html" role="menuitem">Leadership</a>
-          </div>
-        </div>
+          <li class="dropdown">
+            <a href="#">About ▾</a>
+            <ul class="dropdown-content">
+              <li><a href="about.html">About LNCT</a></li>
+              <li><a href="vision.html">Vision & Mission</a></li>
+              <li><a href="leadership.html">Leadership</a></li>
+            </ul>
+          </li>
 
-        <div class="dropdown">
-          <button class="dropbtn" aria-haspopup="true" aria-expanded="false">Institutions ▾</button>
-          <div class="dropdown-content" role="menu" aria-label="Institutions submenu">
-            <a href="institutions.html" role="menuitem">Engineering</a>
-            <a href="institutions.html" role="menuitem">Management</a>
-            <a href="institutions.html" role="menuitem">Medical</a>
-          </div>
-        </div>
+          <li class="dropdown">
+            <a href="#">Institutions ▾</a>
+            <ul class="dropdown-content">
+              <li><a href="institutions.html">Engineering</a></li>
+              <li><a href="institutions.html">Management</a></li>
+              <li><a href="institutions.html">Medical</a></li>
+            </ul>
+          </li>
 
-        <div class="dropdown">
-          <button class="dropbtn" aria-haspopup="true" aria-expanded="false">Companies ▾</button>
-          <div class="dropdown-content" role="menu" aria-label="Companies submenu">
-            <a href="companies.html" role="menuitem">Initiatives</a>
-            <a href="companies.html" role="menuitem">Partners</a>
-          </div>
-        </div>
+          <li class="dropdown">
+            <a href="#">Companies ▾</a>
+            <ul class="dropdown-content">
+              <li><a href="companies.html">Initiatives</a></li>
+              <li><a href="companies.html">Partners</a></li>
+            </ul>
+          </li>
 
-        <a href="admissions.html">Admissions</a>
-        <a href="placements.html">Placements</a>
-        <a href="contact.html">Contact</a>
+          <li><a href="admissions.html">Admissions</a></li>
+          <li><a href="placements.html">Placements</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
       </nav>
     </div>
   </header>
 
   <script>
-    const menuToggle = document.getElementById('menu-toggle');
-    const navLinks = document.getElementById('nav-links');
+  // Mobile nav toggle
+  const menuToggle = document.getElementById('menu-toggle');
+  const navLinks = document.getElementById('nav-links');
 
-    menuToggle.addEventListener('click', () => {
-      navLinks.classList.toggle('open');
+  menuToggle.addEventListener('click', () => {
+    navLinks.classList.toggle('open');
+  });
+
+  // Dropdown toggles for mobile
+  const dropdowns = document.querySelectorAll('.nav-links .dropdown > a');
+
+  dropdowns.forEach(drop => {
+    drop.addEventListener('click', function (e) {
+      // Only activate this on mobile screens
+      if (window.innerWidth <= 768) {
+        e.preventDefault(); // prevent following the link
+        this.parentElement.classList.toggle('open');
+      }
     });
-  </script>
+  });
+</script>
+
 </body>
 </html>
