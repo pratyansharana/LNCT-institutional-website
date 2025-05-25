@@ -8,6 +8,7 @@
 </head>
 <body>
   <header class="header">
+    <div id="menu-overlay" class="menu-overlay"></div>
     <div class="container header-content">
       <img src="assets/logo.png" alt="LNCT Logo" class="logo" />
 
@@ -52,26 +53,17 @@
   </header>
 
   <script>
-  // Mobile nav toggle
   const menuToggle = document.getElementById('menu-toggle');
   const navLinks = document.getElementById('nav-links');
+  const overlay = document.getElementById('menu-overlay');
 
-  menuToggle.addEventListener('click', () => {
+  function toggleMenu() {
     navLinks.classList.toggle('open');
-  });
+    overlay.classList.toggle('active');
+  }
 
-  // Dropdown toggles for mobile
-  const dropdowns = document.querySelectorAll('.nav-links .dropdown > a');
-
-  dropdowns.forEach(drop => {
-    drop.addEventListener('click', function (e) {
-      // Only activate this on mobile screens
-      if (window.innerWidth <= 768) {
-        e.preventDefault(); // prevent following the link
-        this.parentElement.classList.toggle('open');
-      }
-    });
-  });
+  menuToggle.addEventListener('click', toggleMenu);
+  overlay.addEventListener('click', toggleMenu); // Close on click outside
 </script>
 
 </body>
